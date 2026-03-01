@@ -1,0 +1,143 @@
+{
+    "gridSize": [
+        5,
+        5,
+        5
+    ],
+    "placedBlocks": [
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/1masu.fbx",
+            "position": {
+                "x": 0.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+    ],
+    "targets": {
+        "x": [
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                true,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ]
+        ],
+        "y": [
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                true,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ]
+        ],
+        "z": [
+            [
+                false,
+                false,
+                true,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ]
+        ]
+    }
+}

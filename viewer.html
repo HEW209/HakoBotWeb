@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ハコボット - 解答ビューア</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { overflow: hidden; }
+        
+        #ui-container { 
+            position: absolute; 
+            top: 90px;
+            left: 20px; 
+            z-index: 10; 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px; 
+            border-radius: 16px; 
+            box-shadow: 0 8px 32px rgba(0, 91, 150, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 220px;
+            box-sizing: border-box;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        #ui-container label { font-size: 0.85rem; font-weight: 600; color: #666; }
+        #ui-container select { padding: 8px; border-radius: 6px; border: 2px solid #E1E8ED; font-size: 1rem; cursor: pointer; }
+        
+        #hint { 
+            position: absolute; 
+            bottom: 20px; 
+            right: 20px; 
+            color: #8899A6; 
+            font-size: 0.85rem; 
+            pointer-events: none; 
+            z-index: 10;
+        }
+        
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+
+        @media (max-width: 768px) {
+            #ui-container {
+                top: auto;
+                bottom: 25px; 
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 30px);
+                max-width: 400px;
+                padding: 15px 20px;
+                flex-direction: row; 
+                align-items: center;
+            }
+            .control-group {
+                flex: 1;
+            }
+            #hint {
+                top: 100px; 
+                bottom: auto;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(255, 255, 255, 0.7);
+                padding: 4px 12px;
+                border-radius: 12px;
+                white-space: nowrap;
+                color: #555;
+            }
+        }
+    </style>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="Assets/Images/logo.png" alt="ハコボット">
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="viewer.html">Viewer</a>
+            <a href="team.html">Team</a>
+        </nav>
+    </header>
+
+    <div id="ui-container">
+        <div class="control-group">
+            <label for="stageSelect">ステージ選択</label>
+            <select id="stageSelect"></select>
+        </div>
+    </div>
+    
+    <div id="hint">ドラッグ(スワイプ)で回転 / スクロール(ピンチ)で拡大</div>
+    
+    <div id="canvas-container"></div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xF0F4F8);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(8, 6, -8);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        container.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 2.5, 0);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
+        dirLight.position.set(10, 20, 10);
+        dirLight.castShadow = true;
+        scene.add(dirLight);
+
+        let stageGroup = new THREE.Group();
+        scene.add(stageGroup);
+
+        const manager = new THREE.LoadingManager();
+        manager.setURLModifier((url) => {
+            if (url.includes('/FBX/') && url.match(/\.(png|jpg|jpeg|tga|bmp)$/i)) {
+                return url.replace('/FBX/', '/texture/');
+            }
+            return url;
+        });
+
+        const fbxLoader = new FBXLoader(manager);
+
+        function convertPosition(dxPos) { return new THREE.Vector3(dxPos.x, dxPos.y, -dxPos.z); }
+        function convertRotation(dxQuat) { return new THREE.Quaternion(-dxQuat.x, -dxQuat.y, dxQuat.z, dxQuat.w); }
+
+        async function loadStage(stageNumber) {
+            scene.remove(stageGroup);
+            stageGroup = new THREE.Group();
+            scene.add(stageGroup);
+
+            try {
+                const response = await fetch(`Assets/Answers/answer${stageNumber}.json`);
+                if (!response.ok) throw new Error("JSON Not Found");
+                const answerData = await response.json();
+
+                const gridHelper = new THREE.GridHelper(5, 5, 0x005B96, 0xD0D7DE);
+                gridHelper.position.y = -0.01;
+                stageGroup.add(gridHelper);
+
+                for (const blockData of answerData.placedBlocks) {
+                    const modelPath = blockData.modelPath.replace(/\\/g, '/');
+                    fbxLoader.load(modelPath, (fbx) => {
+                        fbx.position.copy(convertPosition(blockData.position));
+                        fbx.quaternion.copy(convertRotation(blockData.rotation));
+                        
+                        fbx.traverse((child) => {
+                            if (child.isMesh) { 
+                                child.castShadow = true; 
+                                child.receiveShadow = true; 
+                                
+                                const materials = Array.isArray(child.material) ? child.material : [child.material];
+                                materials.forEach(mat => {
+                                    if (mat) {
+                                        mat.transparent = false;
+                                        mat.opacity = 1.0;
+                                        mat.depthWrite = true;
+                                        if (mat.color) mat.color.setHex(0xffffff);
+                                        if (mat.shininess !== undefined) mat.shininess = 10;
+                                    }
+                                });
+                            }
+                        });
+                        stageGroup.add(fbx);
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                alert(`ステージ ${stageNumber} の読み込みに失敗しました。`);
+            }
+        }
+
+        const stageSelect = document.getElementById('stageSelect');
+        for (let i = 1; i <= 30; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `ステージ ${i}`;
+            stageSelect.appendChild(option);
+        }
+
+        stageSelect.addEventListener('change', (event) => {
+            loadStage(event.target.value);
+        });
+
+        function adjustCamera() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const aspect = width / height;
+            
+            camera.aspect = aspect;
+            const baseZoom = 1.25; 
+            camera.zoom = aspect < 1.0 ? aspect * baseZoom : baseZoom;
+            
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+
+        window.addEventListener('resize', adjustCamera);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); 
+            renderer.render(scene, camera);
+        }
+        
+        adjustCamera();
+        animate();
+        loadStage(1);
+    </script>
+</body>
+</html>

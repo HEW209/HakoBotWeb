@@ -1,0 +1,246 @@
+{
+    "gridSize": [
+        5,
+        5,
+        5
+    ],
+    "placedBlocks": [
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    2,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/Y3BoxLadder.fbx",
+            "position": {
+                "x": -1.0,
+                "y": 0.5,
+                "z": 1.0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "localBlocks": [
+                [
+                    -1,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    -1,
+                    1,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/Lji1.fbx",
+            "position": {
+                "x": -1.0,
+                "y": 2.5,
+                "z": 2.0
+            },
+            "rotation": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            }
+        },
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/Fireplace.fbx",
+            "position": {
+                "x": 0.0,
+                "y": 2.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "w": 0.7071067690849304,
+                "x": 0.0,
+                "y": -0.7071067690849304,
+                "z": -0.0
+            }
+        },
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    0,
+                    1
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/Kotatu.fbx",
+            "position": {
+                "x": 0.0,
+                "y": 3.5,
+                "z": -1.0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+    ],
+    "targets": {
+        "x": [
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                true,
+                false
+            ],
+            [
+                false,
+                false,
+                true,
+                true,
+                false
+            ],
+            [
+                true,
+                true,
+                true,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                true,
+                true,
+                false
+            ]
+        ],
+        "y": [
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                true,
+                true,
+                false
+            ],
+            [
+                false,
+                false,
+                true,
+                true,
+                false
+            ],
+            [
+                false,
+                true,
+                true,
+                false,
+                false
+            ],
+            [
+                false,
+                true,
+                true,
+                false,
+                false
+            ]
+        ],
+        "z": [
+            [
+                false,
+                true,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                true,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                true,
+                true,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                true,
+                true,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ]
+        ]
+    }
+}

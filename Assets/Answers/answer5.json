@@ -1,0 +1,288 @@
+{
+    "gridSize": [
+        5,
+        5,
+        5
+    ],
+    "placedBlocks": [
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ],
+                [
+                    -1,
+                    0,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/X3Boxcheir.fbx",
+            "position": {
+                "x": 1.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "localBlocks": [
+                [
+                    -1,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    -1,
+                    1,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/Lji1.fbx",
+            "position": {
+                "x": -2.0,
+                "y": 0.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "w": 0.0,
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0
+            }
+        },
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/Barrel.fbx",
+            "position": {
+                "x": -1.0,
+                "y": 2.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    -1,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/yoko3masu.fbx",
+            "position": {
+                "x": -1.0,
+                "y": 3.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    2,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/Y3BoxCardboard.fbx",
+            "position": {
+                "x": 1.0,
+                "y": 1.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "localBlocks": [
+                [
+                    0,
+                    0,
+                    0
+                ]
+            ],
+            "modelPath": "Assets/Model/Blocks/FBX/Y1BoxChair.fbx",
+            "position": {
+                "x": 2.0,
+                "y": 3.5,
+                "z": 0.0
+            },
+            "rotation": {
+                "w": 1.0,
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+    ],
+    "targets": {
+        "x": [
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                true,
+                true,
+                true,
+                true,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ]
+        ],
+        "y": [
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                true,
+                true,
+                true,
+                true,
+                true
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ]
+        ],
+        "z": [
+            [
+                true,
+                true,
+                true,
+                true,
+                true
+            ],
+            [
+                false,
+                true,
+                false,
+                true,
+                false
+            ],
+            [
+                false,
+                true,
+                false,
+                true,
+                false
+            ],
+            [
+                true,
+                true,
+                true,
+                true,
+                true
+            ],
+            [
+                false,
+                false,
+                false,
+                false,
+                false
+            ]
+        ]
+    }
+}
